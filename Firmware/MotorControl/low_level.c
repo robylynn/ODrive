@@ -101,7 +101,7 @@ Motor_t motors[] = {
             // Read out max_allowed_current to see max supported value for current_lim.
             // You can change DRV8301_ShuntAmpGain to get a different range.
             // .current_lim = 75.0f, //[A]
-            .current_lim = 10.0f,  //[A]
+            .current_lim = 5.0f,  //[A]
             .p_gain = 0.0f,        // [V/A] should be auto set after resistance and inductance measurement
             .i_gain = 0.0f,        // [V/As] should be auto set after resistance and inductance measurement
             .v_current_control_integral_d = 0.0f,
@@ -208,7 +208,7 @@ Motor_t motors[] = {
             // Read out max_allowed_current to see max supported value for current_lim.
             // You can change DRV8301_ShuntAmpGain to get a different range.
             // .current_lim = 75.0f, //[A]
-            .current_lim = 10.0f,  //[A]
+            .current_lim = 5.0f,  //[A]
             .p_gain = 0.0f,        // [V/A] should be auto set after resistance and inductance measurement
             .i_gain = 0.0f,        // [V/As] should be auto set after resistance and inductance measurement
             .v_current_control_integral_d = 0.0f,
