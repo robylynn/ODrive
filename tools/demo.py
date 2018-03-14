@@ -23,18 +23,18 @@ my_drive = odrive.core.find_any(consider_usb=True, consider_serial=False, printe
 print("Bus voltage is " + str(my_drive.vbus_voltage) + "V")
 
 # Or to change a value, just assign to the property
-my_drive.motor0.pos_setpoint = 3.14
+##my_drive.motor0.pos_setpoint = 3.14
 print("Position setpoint is " + str(my_drive.motor0.pos_setpoint))
 
 # And this is how function calls are done:
-my_drive.motor0.set_pos_setpoint(0.0, 0.0, 0.0)
+##my_drive.motor0.set_pos_setpoint(0.0, 0.0, 0.0)
 
 # A little sine wave to test
 t0 = time.monotonic()
 while True:
     setpoint = 10000.0 * math.sin((time.monotonic() - t0)*2)
     print("goto " + str(int(setpoint)))
-    my_drive.motor0.set_pos_setpoint(setpoint, 0.0, 0.0)
+    ##my_drive.motor0.set_pos_setpoint(setpoint, 0.0, 0.0)
     time.sleep(0.01)
 
 
