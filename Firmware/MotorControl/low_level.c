@@ -50,7 +50,8 @@ float vbus_voltage = 12.0f;
 Motor_t motors[] = {
     {
         // M0
-        .control_mode = CTRL_MODE_POSITION_CONTROL,  //see: Motor_control_mode_t
+        //.control_mode = CTRL_MODE_POSITION_CONTROL,  //see: Motor_control_mode_t
+        .control_mode = CTRL_MODE_CURRENT_CONTROL,
         .enable_step_dir = false,                    //auto enabled after calibration
         .counts_per_step = 2.0f,
         .error = ERROR_NO_ERROR,
@@ -113,9 +114,9 @@ Motor_t motors[] = {
             .Iq_measured = 0.0f,
             .max_allowed_current = 0.0f,
         },
-        // .rotor_mode = ROTOR_MODE_SENSORLESS,
+        .rotor_mode = ROTOR_MODE_SENSORLESS,
         // .rotor_mode = ROTOR_MODE_RUN_ENCODER_TEST_SENSORLESS,
-        .rotor_mode = ROTOR_MODE_ENCODER,
+        //.rotor_mode = ROTOR_MODE_ENCODER,
         .encoder = {
             .encoder_timer = &htim3,
             .use_index = false,
@@ -144,9 +145,9 @@ Motor_t motors[] = {
             .V_alpha_beta_memory = {0.0f, 0.0f},  // [V]
             .pm_flux_linkage = 1.58e-3f,          // [V / (rad/s)]  { 5.51328895422 / (<pole pairs> * <rpm/v>) }
             .estimator_good = false,
-            .spin_up_current = 10.0f,        // [A]
-            .spin_up_acceleration = 400.0f,  // [rad/s^2]
-            .spin_up_target_vel = 400.0f,    // [rad/s]
+            .spin_up_current = 2.0f,        // [A]
+            .spin_up_acceleration = 100.0f,  // [rad/s^2]
+            .spin_up_target_vel = 200.0f,    // [rad/s]
         },
         .loop_counter = 0,
         .timing_log = {0},
