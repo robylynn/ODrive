@@ -50,22 +50,23 @@ float vbus_voltage = 12.0f;
 Motor_t motors[] = {
     {
         // M0
-        //.control_mode = CTRL_MODE_POSITION_CONTROL,  //see: Motor_control_mode_t
-        .control_mode = CTRL_MODE_CURRENT_CONTROL,
+        .control_mode = CTRL_MODE_POSITION_CONTROL,  //see: Motor_control_mode_t
+        //.control_mode = CTRL_MODE_CURRENT_CONTROL,
         .enable_step_dir = false,                    //auto enabled after calibration
         .counts_per_step = 2.0f,
         .error = ERROR_NO_ERROR,
         .pole_pairs = 7, // This value is correct for N5065 motors and Turnigy SK3 series.
         .pos_setpoint = 0.0f,
-        .pos_gain = 20.0f,  // [(counts/s) / counts]
+        //.pos_gain = 21.0f,  // [(counts/s) / counts]
+        .pos_gain = 100.0f,
         .vel_setpoint = 0.0f,
         // .vel_setpoint = 800.0f, <sensorless example>
-        .vel_gain = 5.0f / 10000.0f,  // [A/(counts/s)]
+        .vel_gain = 10.0f / 10000.0f,  // [A/(counts/s)]
         // .vel_gain = 15.0f / 200.0f, // [A/(rad/s)] <sensorless example>
         .vel_integrator_gain = 10.0f / 10000.0f,  // [A/(counts/s * s)]
         // .vel_integrator_gain = 0.0f, // [A/(rad/s * s)] <sensorless example>
         .vel_integrator_current = 0.0f,  // [A]
-        .vel_limit = 20000.0f,           // [counts/s]
+        .vel_limit = 200000.0f,           // [counts/s]
         .current_setpoint = 0.0f,        // [A]
         .calibration_current = 10.0f,    // [A]
         .resistance_calib_max_voltage = 1.0f, // [V] - You may need to increase this if this voltage isn't sufficient to drive calibration_current through the motor.
@@ -102,7 +103,7 @@ Motor_t motors[] = {
             // Read out max_allowed_current to see max supported value for current_lim.
             // You can change DRV8301_ShuntAmpGain to get a different range.
             // .current_lim = 75.0f, //[A]
-            .current_lim = 10.0f,  //[A]
+            .current_lim = 30.0f,  //[A]
             .p_gain = 0.0f,        // [V/A] should be auto set after resistance and inductance measurement
             .i_gain = 0.0f,        // [V/As] should be auto set after resistance and inductance measurement
             .v_current_control_integral_d = 0.0f,
@@ -114,9 +115,9 @@ Motor_t motors[] = {
             .Iq_measured = 0.0f,
             .max_allowed_current = 0.0f,
         },
-        .rotor_mode = ROTOR_MODE_SENSORLESS,
+        //.rotor_mode = ROTOR_MODE_SENSORLESS,
         // .rotor_mode = ROTOR_MODE_RUN_ENCODER_TEST_SENSORLESS,
-        //.rotor_mode = ROTOR_MODE_ENCODER,
+        .rotor_mode = ROTOR_MODE_ENCODER,
         .encoder = {
             .encoder_timer = &htim3,
             .use_index = false,
@@ -145,7 +146,7 @@ Motor_t motors[] = {
             .V_alpha_beta_memory = {0.0f, 0.0f},  // [V]
             .pm_flux_linkage = 1.58e-3f,          // [V / (rad/s)]  { 5.51328895422 / (<pole pairs> * <rpm/v>) }
             .estimator_good = false,
-            .spin_up_current = 2.0f,        // [A]
+            .spin_up_current = 5.0f,        // [A]
             .spin_up_acceleration = 100.0f,  // [rad/s^2]
             .spin_up_target_vel = 200.0f,    // [rad/s]
         },

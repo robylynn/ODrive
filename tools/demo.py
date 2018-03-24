@@ -34,7 +34,7 @@ t0 = time.monotonic()
 while True:
     setpoint = 10000.0 * math.sin((time.monotonic() - t0)*2)
     print("goto " + str(int(setpoint)))
-    ##my_drive.motor0.set_pos_setpoint(setpoint, 0.0, 0.0)
+    my_drive.motor0.set_pos_setpoint(setpoint, 0.0, 0.0)
     time.sleep(0.01)
 
 
